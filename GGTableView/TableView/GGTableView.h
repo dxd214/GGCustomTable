@@ -42,5 +42,8 @@ typedef void (^TableViewCellConfigurate)(id cell, id entity, NSIndexPath *indexP
 @protocol GGTableViewDelegate <NSObject>
 @optional
 - (void)tableView:(GGTableView *)tableView didSelectedRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)tableView:(GGTableView *)tableView cellHeightAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(GGTableView *)tableView deleteRowAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)isCellEditableTableView:(GGTableView *)tableView;
 @end
 

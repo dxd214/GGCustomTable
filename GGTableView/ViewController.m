@@ -65,6 +65,23 @@
     NSLog(@"selected row : %ld",indexPath.row);
 }
 
+//- (CGFloat)tableView:(GGTableView *)tableView cellHeightAtIndexPath:(NSIndexPath *)indexPath{
+//    return 44.0;
+//}
+//
+//- (BOOL)isCellEditableTableView:(GGTableView *)tableView{
+//    return NO;
+//}
+//
+//- (void)tableView:(GGTableView *)tableView deleteRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"sss");
+//    
+//    NSMutableArray *datas = [[NSMutableArray alloc] initWithArray:self.tableView.dataSource];
+//    [datas removeObjectAtIndex:indexPath.row];
+//    self.tableView.dataSource = datas;
+//    
+//}
+
 #pragma mark - action
 
 - (IBAction)changeAction:(id)sender {

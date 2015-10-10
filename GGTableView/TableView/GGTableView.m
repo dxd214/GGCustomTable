@@ -61,12 +61,29 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tableView:cellHeightAtIndexPath:)]) {
+        return [self.delegate tableView:self cellHeightAtIndexPath:indexPath];
+    }
     return [[self tableView:tableView cellForRowAtIndexPath:indexPath] frame].size.height;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (_delegate && [_delegate respondsToSelector:@selector(tableView:didSelectedRowAtIndexPath:)]) {
         [_delegate tableView:self didSelectedRowAtIndexPath:indexPath];
     }
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tableView:deleteRowAtIndexPath:)]) {
+            [self.delegate tableView:self deleteRowAtIndexPath:indexPath];
+        }
+    }
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(isCellEditableTableView:)]) {
+        return [self.delegate isCellEditableTableView:self];
+    }
+    return NO;
 }
 
 #pragma mark - UITableViewDataSource
