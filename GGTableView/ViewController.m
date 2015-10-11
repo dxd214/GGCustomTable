@@ -44,11 +44,12 @@
     [self.view addSubview:self.tableView];
     
     
-    
-    [self.tableView setHeaderRefreshingBlock:^{
+    __weak __typeof(&*self)fuckSelf = self;
+    [self.tableView setHeaderRefreshingBlock:^(GGTableView *tableView) {
         NSLog(@"---");
+        [fuckSelf performSelector:@selector(endHeaderRefreshing) withObject:fuckSelf afterDelay:2];
     }];
-    [self.tableView setFooterRefreshingBlock:^{
+    [self.tableView setFooterRefreshingBlock:^(GGTableView *tableView) {
         NSLog(@"===");
     }];
     
@@ -84,8 +85,18 @@
 
 #pragma mark - action
 
+- (void)endHeaderRefreshing{
+    [self.tableView endHeaderRefreshing];
+}
+
 - (IBAction)changeAction:(id)sender {
-    self.tableView.dataSource = @[@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah",@"hahahah"];
+    
+    
+    NSMutableArray *datas = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 100; i++) {
+        [datas addObject:[NSString stringWithFormat:@"%d",i]];
+    }
+    self.tableView.dataSource = datas;
 }
 
 @end

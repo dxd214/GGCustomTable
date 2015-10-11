@@ -114,7 +114,7 @@
     
     self.tableView.header.refreshingBlock = ^{
         if (self.headerRefreshingBlock) {
-            self.headerRefreshingBlock();
+            self.headerRefreshingBlock(self);
         }
     };
 }
@@ -126,7 +126,7 @@
     
     self.tableView.footer.refreshingBlock = ^{
         if (self.footerRefreshingBlock) {
-            self.footerRefreshingBlock();
+            self.footerRefreshingBlock(self);
         }
     };
 }

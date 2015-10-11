@@ -22,8 +22,8 @@ typedef void (^TableViewCellConfigurate)(id cell, id entity, NSIndexPath *indexP
 /** 代理 */
 @property (nonatomic, assign) id<GGTableViewDelegate>delegate;
 /** 正在刷新的回调 */
-@property (copy, nonatomic) void (^headerRefreshingBlock)();
-@property (copy, nonatomic) void (^footerRefreshingBlock)();
+@property (copy, nonatomic) void (^headerRefreshingBlock)(GGTableView *tableView);
+@property (copy, nonatomic) void (^footerRefreshingBlock)(GGTableView *tableView);
 
 
 - (void)reloadData;
